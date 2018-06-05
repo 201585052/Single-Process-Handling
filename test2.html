@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>几个进程调度算法演示</title>
+    <style>
+        #selec {
+            height: 100px;
+        }
+
+        #container {
+            margin: auto;
+            height: 500px;
+            width: 800px;
+        }
+
+        #container h3 {
+            width: 30px;
+            margin: 0;
+            display: inline-block;
+        }
+
+        .process {
+            height: 100px;
+        }
+
+        .process h3 {
+            display: inline-block;
+        }
+
+        .process h4 {
+            /*这部分用于控制提醒字符*/
+            opacity: 0;
+            transition: opacity 1s;
+            -webkit-transition: opacity 1s;
+        }
+
+        .pblock {
+            display: inline-block;
+            height: 21px;
+            width: 0px;
+            background-color: black;
+            line-height: 21px;
+            transition: width 1s;
+            -webkit-transition: width 1s;
+            /* Safari */
+            position: relative;
+            top: 3px;
+        }
+
+        #showbar {
+            width: 300px;
+            height: auto;
+            padding: 20px;
+            border: 2px solid black;
+            text-align: center;
+            margin: auto;
+            margin-top: 100px;
+        }
+
+        #tableNotice {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 align="center">单处理器调度算法&nbsp;&nbsp;&nbsp;
+        <span id="timerShow">0</span>
+    </h1>
+    <div id="selec"></div>
+    <div id="container">
+    </div>
+    <div id="showbar">
+        <table border="1" cellspacing="0" id="showTable">
+            <tr>
+                <th>进程名</th>
+                <th>完成时间</th>
+                <th>周转时间</th>
+                <th>带权周转时间</th>
+            </tr>
+        </table>
+        <span id="tableNotice">进程已全部完成</span>
+    </div>
+    <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+    <script src="./RR.js"></script>
+</body>
+
+</html>
