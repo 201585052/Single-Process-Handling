@@ -39,6 +39,8 @@
             display: inline-block;
             border-right: 1px solid black;
             border-left: 1px solid black;
+            transition: width 1s;
+            -webkit-transition: width 1s;
         }
         .process {
             height: 100px;
@@ -133,8 +135,10 @@
     <script>
         var t = 0;
         var cnt = 0;
+        var finalTime = 0;
         var timer;
         var timerShow = document.getElementById('timerShow');
+        var queShow = document.getElementById('processque');
         var WholeProcess = document.getElementsByClassName('process');
         var Process = document.getElementsByClassName('pblock');
         var showTable = document.getElementById('showTable');
@@ -149,12 +153,30 @@
             "D": [6, 5],
             "E": [8, 2]
         };
-        var SJFque = [];//存放进程名称，进程长度，及终止时间
+        var SJFque = [];//存放进程名称及服务时间
         timer = setInterval(processSJF,1000);
         function processSJF() {
+            if(cnt == 5){
+                clearInterval(timer);
+            }
             var key = String.fromCharCode(65+cnt);
-            if(t>=timeJson[key][0]){
-                SJFque.push([key,tiemJson[key][1]]);
+            if(t>=timeJson[key][0] && SJFque[0][0]!=key){
+                SJFque.push([key,finalTime+tiemJson[key][1]]);
+                finalTime += timeJson[key][1];
+                var newqueblock = document.createElement('div');
+                //queblock.setAttribute('class','queblock');
+                newqueblock.className = 'queblock';
+                newqueblock.innerHTML = key;
+                queShow.appendChild(newqueblock);
+            }
+            if(t>=SJFque[0][1]){
+                cnt++;
+                SJFque.shift();
+                queShow.removeChild(queShow.childNodes[0]);
+                SJFque.sort((x,y) => x[1]-y[1]);
+                for(var i in SJFque){
+
+                }
             }
             t++;
             if (cnt < 5) {
