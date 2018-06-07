@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>几个进程调度算法演示</title>
+    <style>
+        #selec {
+            height: 80px;
+            width: 260px;
+            margin: auto;
+        }
+        .selecbut{
+            width: 50px;
+            height: 30px;
+            background-color: mediumspringgreen;
+            padding: 5px;
+            text-align: center;
+        }
+        .selecbut:hover{
+            border: 1px solid royalblue; 
+        }
+
+        #container {
+            margin: auto;
+            height: 500px;
+            width: 800px;
+            display: none;
+        }
+
+        #container h3 {
+            width: 30px;
+            margin: 0;
+            display: inline-block;
+        }
+        #container2 {
+            margin: auto;
+            height: 500px;
+            width: 800px;
+            display: none;
+        }
+
+        #container2 h3 {
+            width: 30px;
+            margin: 0;
+            display: inline-block;
+        }
+
+        #processque {
+            width: auto;
+            height: 30px;
+            border: 1px solid #7f7f7f;
+            margin-right: 200px;
+            text-align: center;
+            font-size: 15px;
+            float: right;
+            line-height: 30px;
+            display: none;
+        }
+
+        .queblock {
+            background-color: rgb(194, 194, 172);
+            width: 50px;
+            height: auto;
+            display: inline-block;
+            border-right: 1px solid black;
+            border-left: 1px solid black;
+            transition: all 1s;
+            -webkit-transition: all 1s;
+        }
+
+        .process {
+            height: 100px;
+        }
+
+        .process h3 {
+            display: inline-block;
+        }
+
+        .process h4 {
+            /*这部分用于控制提醒字符*/
+            opacity: 0;
+            transition: opacity 1s;
+            -webkit-transition: opacity 1s;
+        }
+
+        .pblock {
+            display: inline-block;
+            height: 21px;
+            width: 0px;
+            background-color: black;
+            line-height: 21px;
+            transition: width 1s;
+            -webkit-transition: width 1s;
+            /* Safari */
+            position: relative;
+            top: 3px;
+        }
+
+        #showbar {
+            width: 300px;
+            height: auto;
+            padding: 20px;
+            border: 2px solid black;
+            text-align: center;
+            margin: auto;
+            margin-top: 100px;
+            display: none;
+            float: right;
+            position: relative;
+            top:-620px;
+            right: 60px;
+        }
+
+        #tableNotice {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 align="center">单处理器调度算法
+        <span id="timerShow">&nbsp;&nbsp;&nbsp;0</span>
+    </h1>
+    <span id="processque">&nbsp;进程队列：
+
+    </span>
+    <div id="selec">
+        <button class="selecbut">FCFS</button>
+        <button class="selecbut">SJF</button>
+        <button class="selecbut">HRN</button>
+        <button class="selecbut">RR</button>
+    </div>
+    <div id="container">
+        <div class="process">
+            <h3>A</h3>
+            <div class="pblock"></div>
+            <h4>A启动！</h4>
+        </div>
+        <div class="process">
+            <h3>B</h3>
+            <div class="pblock"></div>
+            <h4>B启动！</h4>
+        </div>
+        <div class="process">
+            <h3>C</h3>
+            <div class="pblock"></div>
+            <h4>C启动！</h4>
+        </div>
+        <div class="process">
+            <h3>D</h3>
+            <div class="pblock"></div>
+            <h4>D启动！</h4>
+        </div>
+        <div class="process">
+            <h3>E</h3>
+            <div class="pblock"></div>
+            <h4>E启动！</h4>
+        </div>
+    </div>
+    <div id="container2"></div>
+    <div id="showbar">
+        <table border="1" cellspacing="0" id="showTable">
+            <tr>
+                <th>进程名</th>
+                <th>完成时间</th>
+                <th>周转时间</th>
+                <th>带权周转时间</th>
+            </tr>
+        </table>
+        <span id="tableNotice">进程已全部完成</span>
+    </div>
+    <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+    <script src="./Process.js"></script>
+    <script src="./Begin.js"></script>
+</body>
+
+</html>

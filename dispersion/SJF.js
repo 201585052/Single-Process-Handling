@@ -112,8 +112,10 @@ function processSJF() {
         cnt = SJFque[0][0].charCodeAt() - 65;
         if (Process[cnt].style.width) {
             Process[cnt].style.width = parseInt(Process[cnt].style.width) + 50 + "px";
+            WholeProcess[cnt].getElementsByTagName('h4')[0].style.opacity = 0;
         } else {
             Process[cnt].style.width = Process[cnt].style.width + 50 + "px";
+            WholeProcess[cnt].getElementsByTagName('h4')[0].style.opacity = 1;
         }
     }
     t++;

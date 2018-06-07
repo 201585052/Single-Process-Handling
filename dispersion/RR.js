@@ -1,6 +1,3 @@
-var processPoint = [
-    []
-];
 var timeJson = {
     "A": [0, 3],
     "B": [2, 6],
@@ -11,7 +8,7 @@ var timeJson = {
 var doneTime = [0]; //完成时间即完成时刻
 var cycleTime = [0]; //周转时间 = 作业完成时间-作业提交时间
 var cycle_wTime = [0]; //带权周转时间 = 作业周转时间/作业实际运作时间
-var ty = 1; //这点的x、y坐标构成输出的Json
+var ty = 0; //这点的x、y坐标构成输出的Json
 var RRTime = 5;
 var RRque = [];
 var RRset = {}; //用于记录当前已经加入了什么元素
@@ -63,7 +60,7 @@ function RRProcess(t) {
     }
 }
 RRProcess(0);
-var myChart = echarts.init(document.getElementById('container'));
+var myChart = echarts.init(document.getElementById('container2'));
 option = {
     title: {
         text: '轮转RR(q=1)'
