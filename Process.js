@@ -213,7 +213,7 @@ var Process = (function(){
                     for (let i in timeJsonSet) {
                         waitTime = timeJson[i][0] - finalTime > 0 ? timeJson[i][0] - finalTime : 0;
                         var R = 1 + waitTime / timeJson[i][1];
-                        if (R > keyR) {
+                        if (t>=timeJson[i][0] && R > keyR) {
                             keyR = R;
                             key = i;
                         }
